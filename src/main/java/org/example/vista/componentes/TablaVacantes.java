@@ -46,6 +46,15 @@ public class TablaVacantes extends JTable {
                         areaTextoDetalles.setEditable(false); // Hacer que el JTextArea no sea editable
                         JScrollPane scrollPane = new JScrollPane(areaTextoDetalles); // Agregar el JTextArea a un JScrollPane
 
+                        JButton cerrarButton = new JButton("Cerrar");
+                        cerrarButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                // Cerrar la ventana cuando se haga clic en el botón
+                                dialogo.setVisible(false);
+                            }
+                        });
+
                         areaTextoDetalles.setFont(new Font("Arial", Font.BOLD, 12));
                         areaTextoDetalles.setLineWrap(true);
                         areaTextoDetalles.setWrapStyleWord(true);
@@ -61,7 +70,13 @@ public class TablaVacantes extends JTable {
                         dialogo.add(texto, BorderLayout.NORTH);
 
                         dialogo.add(scrollPane, BorderLayout.CENTER); // Agregar el JScrollPane al JDialog
-                        dialogo.add(postulacion, BorderLayout.SOUTH);
+
+                        JPanel botones = new JPanel();
+
+                        botones.add(postulacion);
+                        botones.add(cerrarButton);
+
+                        dialogo.add(botones, BorderLayout.SOUTH);
                         dialogo.setSize(400, 300);
                         dialogo.setLocationRelativeTo((Frame) SwingUtilities.getWindowAncestor(TablaVacantes.this));
 
